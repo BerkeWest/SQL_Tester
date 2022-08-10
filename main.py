@@ -6,14 +6,14 @@ import add_dataframe2
 import sqlite3
 
 warnings.filterwarnings("ignore")
-df=pd.read_csv('C:\\Users\\berke\\deneme.txt',sep="|")
+df=pd.read_csv('.\\deneme.txt',sep="|")
 iqr2.IQR_filter(df)
 
-con = sqlite3.connect('inventorylist1.db')
+con = sqlite3.connect('inventorylist.db')
 df.to_sql(name="inventory",con=con,if_exists= "replace", index=False)
 con.commit()
 
-xlWriter = pd.ExcelWriter(".xlsx",engine='xlsxwriter')
+xlWriter = pd.ExcelWriter("inventorylist.xlsx",engine='xlsxwriter')
 workbook  = xlWriter.book
 
 add_dataframe2.addframe(df,xlWriter)
